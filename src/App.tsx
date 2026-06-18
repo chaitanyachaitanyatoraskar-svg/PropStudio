@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { 
+  isFirebaseConfigured,
   auth, 
   db, 
   signInWithEmailAndPassword, 
@@ -588,6 +589,18 @@ export default function App() {
                 />
               </div>
 
+              {!isFirebaseConfigured && (
+                <div className="p-3 bg-amber-50 border border-amber-200 text-amber-800 rounded-lg text-xs font-semibold flex flex-col gap-1">
+                  <span className="font-bold flex items-center gap-1.5">
+                    <AlertCircle className="w-4 h-4 text-amber-600 shrink-0 animate-pulse" />
+                    Firebase Configuration Required
+                  </span>
+                  <p className="font-normal text-[11px] text-amber-700 leading-relaxed">
+                    This deployment is missing Firebase Environment Variables. Add them under **Settings → Environment Variables** in your Vercel Dashboard to enable authentication.
+                  </p>
+                </div>
+              )}
+
               {loginError && (
                 <div className="p-3 bg-red-50 border border-red-200 text-red-600 rounded-lg text-xs font-semibold flex items-center gap-1.5">
                   <AlertCircle className="w-4 h-4 text-red-600 shrink-0" />
@@ -1066,6 +1079,13 @@ export default function App() {
   return (
     <div className="min-height-screen flex flex-col bg-bg-warm selection:bg-brand-primary selection:text-white antialiased">
       
+      {!isFirebaseConfigured && (
+        <div className="bg-amber-500 text-white text-xs font-semibold py-2.5 px-4 text-center flex items-center justify-center gap-2 relative z-50 shadow-md">
+          <AlertCircle className="w-4 h-4 shrink-0 animate-pulse text-white" />
+          <span>Firebase configuration is missing! Running in Demo Mode. Set your environment variables in Vercel to enable live databases.</span>
+        </div>
+      )}
+
       {/* HEADER */}
       <header className="sticky top-0 z-40 bg-bg-warm/95 backdrop-blur-md border-b border-border-warm transition-all duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
