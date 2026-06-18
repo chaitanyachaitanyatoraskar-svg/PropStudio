@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+  
+  body {
+    background-color: #F7F4EF; /* bg-warm */
+    color: #1F2933; /* text-primary */
+  }
+}
+
+@theme {
+  --color-bg-warm: #F7F4EF;
+  --color-brand-primary: #176B5B;
+  --color-brand-dark: #0F4D42;
+  --color-brand-accent: #C47A3A;
+  --color-text-primary: #1F2933;
+  --color-text-secondary: #5E6673;
+  --color-border-warm: #DDD6CC;
+  --color-surface-green: #E8F3EF;
+  --color-surface-copper: #F7EDE3;
+}
+
+/* Custom Micro-Animations and Layout Utilities */
+
+@utility text-xxs {
+  font-size: 0.625rem; /* 10px */
+}
+
+@utility animate-bounce-slow {
+  animation: bounce-slow 6s ease-in-out infinite;
+}
+
+@utility animate-float-slow {
+  animation: float-slow 7s ease-in-out infinite;
+}
+
+@utility animate-fade-in {
+  animation: fade-in 0.4s ease-out forwards;
+}
+
+@utility animate-slide-down {
+  animation: slide-down 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes bounce-slow {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% {
+    transform: translateY(-4px);
+  }
+  50% {
+    transform: translateY(12px);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    max-height: 1000px;
+    transform: translateY(0);
+  }
+}
